@@ -549,16 +549,20 @@
   height: 250px;
 }
 
-#map {
-  height: 250px;
-}
-
 .footer__bottom {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 70px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.footer__bottom__right {
+  text-decoration: none;
+  color: #fff;
 }
 
 @media screen and (min-width: 412px) and (max-width: 640px) {
@@ -567,6 +571,7 @@
   }
   .navbar {
     max-width: 640px;
+    justify-content: space-between;
   }
   .promo {
     max-width: 640px;
@@ -587,14 +592,20 @@
     display: flex;
     flex-direction: column;
     gap: 10px 0;
+    padding-left: 5px;
   }
   .menu__right {
     display: flex;
     flex-direction: column;
     gap: 10px 0;
+    padding-right: 0;
   }
   .infoPart1 {
     max-width: 640px;
+  }
+  .infoTexts__img {
+    max-width: 400px;
+    max-height: 220px;
   }
   .InfoTexts {
     display: flex;
@@ -604,6 +615,10 @@
     display: flex;
     flex-direction: column;
     margin-top: 100px;
+  }
+  .trofeo__img {
+    width: 400px;
+    height: 230px;
   }
   .infoPart3 {
     max-width: 640px;
@@ -622,6 +637,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
+  .trackTitle {
+    padding-top: 0;
+  }
+  .track__img {
+    margin-top: 50px;
+    max-width: 400px;
+    max-height: 200px;
   }
   .evo__black__inner::before {
     content: "";
@@ -690,31 +713,18 @@
   .footer__bottom {
     gap: 0 15px;
     margin-top: 35px;
-  }
-  .track__img {
-    margin: 250px auto auto auto;
-    display: block;
-    max-width: 440px;
-    max-height: 220px;
-  }
-  .infoTexts__img {
-    max-width: 440px;
-    max-height: 220px;
+    font-size: 11px;
   }
   .swiper__wrapper {
     max-width: 640px;
   }
   .evo__black__img {
-    max-width: 450px;
-    max-height: 130px;
+    max-width: 415px;
+    max-height: 120px;
   }
   .blog__quote__img {
-    max-width: 430px;
-    max-height: 250px;
-  }
-  .trofeo__img {
-    width: 420px;
-    height: 240px;
+    max-width: 400px;
+    max-height: 230px;
   }
 }
 @media screen and (min-width: 641px) and (max-width: 767px) {
@@ -725,6 +735,7 @@
   .navbar {
     width: 641px;
     max-width: 767px;
+    justify-content: space-between;
   }
   .promo {
     width: 641px;

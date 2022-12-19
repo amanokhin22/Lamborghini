@@ -303,19 +303,16 @@ const Lending = () => {
                                 breakpoints={{
                                     // when window width is >= 412px
                                     412: {
-                                        //width: 412,
                                         slidesPerView: 1,
                                         spaceBetween: 40
                                     },
                                     // when window width is >= 641px
                                     641: {
-                                        //width: 641,
                                         slidesPerView: 2,
                                         spaceBetween: 5
                                     },
                                     // when window width is >= 768px
                                     768: {
-                                        //width: 768,
                                         slidesPerView: 2,
                                         spaceBetween: 5
                                     },
@@ -539,11 +536,11 @@ const Lending = () => {
                             </span>
                             <Image className={styles.footer__bottom__logo} src={"/footerLogo.svg"} alt="" width={50}
                                    height={58}/>
-                            <span className={styles.footer__bottom__right}>
+                            <div className={styles.footer__bottom__right}>
                                 <Link href={"/"}>
                                 Политика конфиденциальности
                             </Link>
-                            </span>
+                            </div>
                         </div>
                     </div>
 
