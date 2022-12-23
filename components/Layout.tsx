@@ -6,7 +6,6 @@ export type layoutProps = {
 const Layout: FC<layoutProps> = ({children}) => {
     return (
         <div>
-
             {children}
         </div>
     )

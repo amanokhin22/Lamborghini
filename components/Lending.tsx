@@ -48,35 +48,35 @@ const Lending = () => {
                     <div className={styles.navbar}>
                         <ul className={styles.menu__left}>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}>О гонке</Link>
+                                <Link className={styles.menu__link} href={`/races/Race`}>О гонке</Link>
                             </li>
                             <li className={styles.menu__item}>
                                 <Link className={styles.menu__link} href={`/`}>Трек</Link>
                             </li>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}>Lamborghini Super trofeo</Link>
+                                <Link className={styles.menu__link} href="/#super">Lamborghini Super trofeo</Link>
                             </li>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}>Новости</Link>
+                                <Link className={styles.menu__link} href={`/news/News`}>Новости</Link>
                             </li>
                         </ul>
                         <Image src="/logo.svg" className={styles.navbar__image} alt="logo" width={83}
                                height={95.7}/>
                         <ul className={styles.menu__right}>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}> Купить билеты</Link>
+                                <Link className={styles.menu__link} href={`/buy/Buy`}> Купить</Link>
                             </li>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}> Смотреть онлайн</Link>
+                                <Link className={styles.menu__link} href="/#video"> Смотреть онлайн</Link>
                             </li>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/`}>Контакты</Link>
+                                <Link className={styles.menu__link} href="/#footer">Контакты</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
             </header>
-            <main className={styles.main}>
+            <main>
                 <section className={styles.promo}>
                     <div className={styles.container}>
                         <div className={styles.promo__inner}>
@@ -202,7 +202,7 @@ const Lending = () => {
                         <Image className={styles.track__img} src="/track.png" alt="" width={743} height={333}/>
                     </div>
                 </section>
-                <section className={styles.evo}>
+                <section id="super" className={styles.evo}>
                     <div className={styles.evo__black}>
                         <div className={styles.container}>
                             <div className={styles.evo__black__inner}>
@@ -275,7 +275,7 @@ const Lending = () => {
                                     — задний спойлер на заднем капоте и верхний воздухозаборник, которые делают его
                                     мгновенно узнаваемым для зрителей.
                                 </p>
-                                <div className={styles.evo__white__video}>
+                                <div id="video" className={styles.evo__white__video}>
                                     <Link className={styles.evo__white__video__link}
                                           href={"https://www.youtube.com/watch?v=4Hn-uCkle-M"}>
                                         <Image className={styles.evo__white__video__img} src="/onVideo.svg" alt=""
@@ -323,9 +323,9 @@ const Lending = () => {
                             >
                                 <SwipeNavigate isNext={true}/>
                                 <SwipeNavigate isNext={false}/>
-                                <SwiperSlide className={styles.swiper__slide__blog__item}>
-                                    <Image className={styles.blog__item__img} src="/blog1.jpg" alt="" width={437}
-                                           height={250}/>
+                                <SwiperSlide className={styles.swiper__slide__race__item}>
+                                    <Image className={styles.blog__item__img} src="/blog1.jpg" alt="" width={900}
+                                           height={500}/>
                                     <h4 className={styles.blog__item__title}>НЕЛЬСОН ПИКЕ СТАЛ ПОБЕДИТЕЛЕМ ГРАНД-ФИНАЛА
                                         В ПОРТИМАНЕ</h4>
                                     <p className={styles.blog__item__text}>
@@ -461,7 +461,7 @@ const Lending = () => {
                         </div>
                     </div>
                 </section>
-                <footer className={styles.footer}>
+                <footer id="footer" className={styles.footer}>
                     <div className={styles.container}>
                         <h3 className={styles.footer__title}>Контакты</h3>
                         <div className={styles.footer__top}>
@@ -534,16 +534,17 @@ const Lending = () => {
                             <span className={styles.footer__bottom__left}>Design by Varvara Prokopchuk
                                 <br/>Work by AMANO
                             </span>
+                            <Link href={"/"}>
                             <Image className={styles.footer__bottom__logo} src={"/footerLogo.svg"} alt="" width={50}
                                    height={58}/>
-                            <div className={styles.footer__bottom__right}>
-                                <Link href={"/"}>
+                            </Link>
+                            <div>
+                                <Link className={styles.footer__bottom__right} href={"/"}>
                                 Политика конфиденциальности
                             </Link>
                             </div>
                         </div>
                     </div>
-
                 </footer>
             </main>
         </>
