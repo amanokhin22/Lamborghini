@@ -42,6 +42,7 @@
 
 .menu__right {
   display: flex;
+  flex-direction: row;
   gap: 0 40px;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
@@ -84,8 +85,8 @@
 
 .news__table {
   display: flex;
-  flex-direction: column;
-  border: 1px solid #040404;
+  flex-direction: row;
+  gap: 0 20px;
   margin: 10px;
   padding: 0;
   max-width: 480px;
@@ -93,6 +94,7 @@
 
 .news__table__item {
   list-style-type: none;
+  border: 1px solid #040404;
 }
 
 .news__table__img {
@@ -118,10 +120,129 @@
   letter-spacing: 0.1em;
 }
 
+.news__table__text {
+  overflow: hidden;
+  height: 52px;
+}
+
 .news__text__hidden {
   display: none;
 }
 
 .news__show__button {
   display: block;
+}
+
+.menu__models {
+  min-width: 120px;
+  max-width: 400px;
+  padding-top: 150px;
+}
+
+.menu_models__title {
+  color: red;
+}
+
+@media screen and (min-width: 412px) and (max-width: 640px) {
+  .header {
+    max-width: 640px;
+  }
+  .navbar {
+    max-width: 640px;
+    justify-content: space-between;
+    gap: 0 40px;
+  }
+
+  .menu__left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+    padding-left: 5px;
+  }
+
+  .menu__right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+    padding-right: 0;
+  }
+  .news__title {
+    top: 165px;
+    left: 32%;
+  }
+  .news__table {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .news__table__item {
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 641px) and (max-width: 767px) {
+  .header {
+    max-width: 767px;
+  }
+  .navbar {
+    max-width: 767px;
+    justify-content: space-between;
+  }
+  .menu__left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+  .menu__right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+
+  .news__title {
+    top: 165px;
+    left: 32%;
+  }
+  .news__table {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .news__table__item {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .header {
+    width: 768px;
+    max-width: 991px;
+  }
+  .navbar {
+    width: 768px;
+    max-width: 991px;
+  }
+  .menu__left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+  .menu__right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+  .news__title {
+    top: 165px;
+    left: 34%;
+  }
+
+  .news__table {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .news__table__item {
+    margin-bottom: 20px;
+  }
+
 }
