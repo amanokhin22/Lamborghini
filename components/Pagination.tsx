@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import ReactPaginate from "react-paginate";
-import styles from "../styles/jobBoard.module.scss";
+import styles from "../styles/news.module.scss";
 import {PaginationPropsType} from "../types/types";
 
 export const Pagination: FC<PaginationPropsType> = ({currentPage, onChangePage, pagesCount}) => {

@@ -143,6 +143,41 @@
   color: red;
 }
 
+.root {
+  position: relative;
+  align-items: center;
+  margin-top: 15px;
+
+  li {
+    display: inline-block;
+
+    a {
+      display: inline-block;
+      text-align: center;
+      width: 45px;
+      line-height: 42px;
+      height: 45px;
+      border: 1px solid #E8EBF3;
+      border-radius: 25px;
+      margin-right: 10px;
+      cursor: pointer;
+      color: #2A3047;
+
+      &:hover {
+        background-color: #878D9D;
+      }
+    }
+  }
+
+  :global {
+    .selected {
+      a {
+        background-color: #384564;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 412px) and (max-width: 640px) {
   .header {
     max-width: 640px;

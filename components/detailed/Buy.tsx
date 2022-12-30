@@ -20,12 +20,13 @@ const styleModel = {
     color: "red",
 }
 
-
 export const Buy = () => {
     const [models, setModels] = useState('');
+    const [showModels, setShowModels] = useState(false);
 
     const handleChange = (event: SelectChangeEvent) => {
         setModels(event.target.value as string);
+        setShowModels(true);
     };
 
     return (
@@ -75,16 +76,16 @@ export const Buy = () => {
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={models}
-                                    label="Models"
+                                    label="ModelsList"
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={"AVENTADOR"}>AVENTADOR</MenuItem>
                                     <MenuItem value={"HURACAN"}>HURACAN</MenuItem>
                                     <MenuItem value={"URUS"}>URUS</MenuItem>
-                                    <Models/>
                                 </Select>
                             </FormControl>
                         </Box>
+                        {showModels && <Models/>}
                     </div>
                 </section>
             </main>

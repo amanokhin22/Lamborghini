@@ -6,7 +6,8 @@ import "swiper/css";
 import 'swiper/css/navigation';
 import SwiperCore, {Autoplay, Navigation} from "swiper";
 import React, {useEffect, useRef} from "react";
-import initMap, {mapPromise} from "../polyfils/Map";
+import initMap from "../polyfils/Map";
+import {mapPromise} from "../pages/_app";
 
 const SwipeNavigate: React.FC<{ isNext: boolean }> = ({isNext}) => {
     const swiper = useSwiper();

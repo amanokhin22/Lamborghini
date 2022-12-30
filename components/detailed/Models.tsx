@@ -1,93 +1,103 @@
 import styles from "../../styles/models.module.scss";
-import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState} from "react";
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import {FormControl, TextareaAutosize} from '@mui/material';
+import {ModelsList} from "../../types/types";
+import {useAppDispatch, useAppSelector} from "../../app/Hooks";
+import {selectIsModalOpen, selectLoadingModels, selectModalModel, selectModelsList} from "../../selectors/selectors";
+import {fetchModels, fetchNews} from "../../redux/asyncThunkNews";
+import {closeModal} from "../../redux/modalSlice";
 
-export interface Models {
-    id: number;
-    image: string;
-    title: string;
-    content: string;
-}
-const modelsList = [
-    {
-        id: 1,
-        image: "/blog3.jpg",
-        title: "Заголовок",
-        content: "Lamborghini Selezione Certified"
-    },
-    {
-        id: 2,
-        image: "/blog4.jpg",
-        title: "Заголовок",
-        content: "Lamborghini Selezione Certified"
-    },
-]
 
 export const Models = () => {
+    const loading = useAppSelector(selectLoadingModels);
+    const modelsList = useAppSelector(selectModelsList);
+    const isOpen = useAppSelector(selectIsModalOpen);
+    const model: ModelsList = useAppSelector(selectModalModel)!;
+    const dispatch = useAppDispatch();
+
+
+    useEffect(() => {
+        dispatch(fetchModels())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+    const [title, setName] = useState('');
+
+    useEffect(() => {
+        setName(model ? model.title : '')
+    }, [model])
+
+    const handleEditModal = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setName(event.target.value)
+    }
+
+    // const submit = () => {
+    //     if (title === model.title) {
+    //         return;
+    //     }
+    //     if (title.length <= 3) {
+    //         setName(model.title)
+    //     } else {
+    //         dispatch(putModel({...model, title}))
+    //     }
+    // };
+
+    // const handleAddEditModelEnter = (event: React.KeyboardEvent) => {
+    //     if (event.key === "Enter") {
+    //         submit();
+    //     }
+    // };
+    //
+    // const handleAddEditModelOut = () => {
+    //     submit();
+    // };
+
+    const handleClose = () => dispatch(closeModal());
+
 
     return (
         <>
-            <header className={styles.header__models}>
-                <div className={styles.navbar__models}>
-                    <ul className={styles.menu__left}>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/lamboPages/Race`}>О гонке</Link>
-                        </li>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/`}>Трек</Link>
-                        </li>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href="/#super">Lamborghini Super trofeo</Link>
-                        </li>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/news/News`}>Новости</Link>
-                        </li>
-                    </ul>
-                    <Image src="/logo.svg" className={styles.navbar__image} alt="logo" width={83}
-                           height={95.7}/>
-                    <ul className={styles.menu__right}>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/buy/Buy`}> Купить</Link>
-                        </li>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href="/#video"> Смотреть онлайн</Link>
-                        </li>
-                        <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href="/#footer">Контакты</Link>
-                        </li>
-                    </ul>
-                </div>
-            </header>
-            <main>
-                <section className={styles.models}>
-                    <div className={styles.container}>
-                        <div className={styles.models__inner}>
-                                <ul className={styles.news__table}>
-                                    {
-                                        modelsList.map((modelItem: Models) => {
-                                                return (
-                                                    <li key={modelItem.id} className={styles.news__table__item}>
+            <div>
+                <Modal
+                    keepMounted
+                    open={isOpen}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box className={styles.boxNeedMoreLongNameOfTheStyleBecauseTheMaterial}>
+                        <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
+                        </Typography>
+                        <Typography id="keep-mounted-modal-description" sx={{mt: 2}}>
+                            {model && model.title}
+                        </Typography>
+                        <FormControl>
 
-                                                        <h3 className={styles.news__table__item__title}>{modelItem.title}</h3>
-                                                        <Image className={styles.news__table__img} src={modelItem.image}
-                                                               alt="" width={480}
-                                                               height={230}/>
-                                                    </li>
-                                                )
-                                            }
-                                        )}
-                                </ul>
-                            </div>
-                        </div>
-                        <Link className={styles.footer__link} href={"/buy/Buy"}>
-                            <Image className={styles.footer__bottom__logo} src={"/footerLogo.svg"} alt=""
-                                   width={50}
-                                   height={58}/>
-                            <span className={styles.footer__bottom__text}>RETURN</span>
-                        </Link>
-                </section>
-            </main>
+                            {/*<TextareaAutosize onBlur={handleAddEditModelOut} onKeyDown={handleAddEditModelEnter}*/}
+                            {/*                  value={title} onChange={handleEditModal}*/}
+                            {/*                  className={styles.textarea} autoFocus={true}/>*/}
+                        </FormControl>
+
+                        <ul className={styles.news__table}>
+                            { loading ? "Loading..." : (
+                                modelsList.map((modelItem: ModelsList) => <li key={modelItem.id}
+                                                                          className={styles.news__table__item}>
+
+                                        <h3 className={styles.news__table__item__title}>{modelItem.title}</h3>
+                                        <Image className={styles.news__table__img} src={modelItem.image}
+                                               alt="" width={480}
+                                               height={230}/>
+                                    </li>
+                                ))}
+                        </ul>
+                    </Box>
+                </Modal>
+            </div>
         </>
     )
 };

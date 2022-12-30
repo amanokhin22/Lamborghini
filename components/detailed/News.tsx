@@ -1,94 +1,40 @@
 import styles from "../../styles/news.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import React, {FC, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Rating from '@mui/material/Rating';
+import {Pagination} from "../Pagination";
+import {useAppDispatch, useAppSelector} from "../../app/Hooks";
+import {selectCurrentPage, selectLoading, selectPageCount, selectPageNews} from "../../selectors/selectors";
+import {setPage} from "../../redux/newsSlice";
+import {fetchNews} from "../../redux/asyncThunkNews";
 
-export interface News {
-    id: number;
-    rating: number;
-    image: string;
-    title: string;
-    content: string;
-}
+export const News = () => {
+    const currentPage = useAppSelector(selectCurrentPage);
+    const pagesCount = useAppSelector(selectPageCount);
+    const loading = useAppSelector(selectLoading);
+    const newsList = useAppSelector(selectPageNews);
+    const dispatch = useAppDispatch();
 
-const newsList = [
-    {
-        id: 1,
-        rating: 3,
-        image: "/blog3.jpg",
-        title: "Заголовок",
-        content: "Lamborghini Selezione Certified\n" +
-            "                                                    Pre-Owned – официальная программа, которая обеспечивает максимальную\n" +
-            "                                                    надёжность и безопасность для покупателей автомобилей Lamborghini с\n" +
-            "                                                    пробегом.\n" +
-            "                                                    Автомобили с пробегом отбираются в ходе процесса тщательной диагностики с\n" +
-            "                                                    использованием исключительно оригинальных запасных частей.\n" +
-            "                                                    Покупатели таких автомобилей могут воспользоваться поддержкой, аналогичной\n" +
-            "                                                    по объему гарантии Lamborghini на новые автомобили, и услугой помощи на\n" +
-            "                                                    дорогах сроком действия до 24 месяцев.\n" +
-            "                                                    Программа Lamborghini Selezione Certified Pre-Owned доступна только у\n" +
-            "                                                    официальных дилеров или сервисных центрах Lamborghini.",
-    },
-    {
-        id: 2,
-        rating: 5,
-        image: "/blog3.jpg",
-        title: "Заголовок",
-        content: "Lamborghini Selezione Certified\n" +
-            "                                                    Pre-Owned – официальная программа, которая обеспечивает максимальную\n" +
-            "                                                    надёжность и безопасность для покупателей автомобилей Lamborghini с\n" +
-            "                                                    пробегом.\n" +
-            "                                                    Автомобили с пробегом отбираются в ходе процесса тщательной диагностики с\n" +
-            "                                                    использованием исключительно оригинальных запасных частей.\n" +
-            "                                                    Покупатели таких автомобилей могут воспользоваться поддержкой, аналогичной\n" +
-            "                                                    по объему гарантии Lamborghini на новые автомобили, и услугой помощи на\n" +
-            "                                                    дорогах сроком действия до 24 месяцев.\n" +
-            "                                                    Программа Lamborghini Selezione Certified Pre-Owned доступна только у\n" +
-            "                                                    официальных дилеров или сервисных центрах Lamborghini.",
-    },
-    {
-        id: 3,
-        rating: 4,
-        image: "/blog4.jpg",
-        title: "Заголовок",
-        content: "Lamborghini Selezione Certified\n" +
-            "                                                    Pre-Owned – официальная программа, которая обеспечивает максимальную\n" +
-            "                                                    надёжность и безопасность для покупателей автомобилей Lamborghini с\n" +
-            "                                                    пробегом.\n" +
-            "                                                    Автомобили с пробегом отбираются в ходе процесса тщательной диагностики с\n" +
-            "                                                    использованием исключительно оригинальных запасных частей.\n" +
-            "                                                    Покупатели таких автомобилей могут воспользоваться поддержкой, аналогичной\n" +
-            "                                                    по объему гарантии Lamborghini на новые автомобили, и услугой помощи на\n" +
-            "                                                    дорогах сроком действия до 24 месяцев.\n" +
-            "                                                    Программа Lamborghini Selezione Certified Pre-Owned доступна только у\n" +
-            "                                                    официальных дилеров или сервисных центрах Lamborghini.",
-    }
-
-]
-
-
-export const News: FC<News> = () => {
-    const [value, setValue] = useState<number | null>(2);
-    //const pagesCount = useAppSelector(selectPageCount);
-    //const currentPage = useAppSelector(selectCurrentPage);
-    //const pagesCount = useAppSelector(selectPageCount);
-    //const dispatch = useAppDispatch();
-
-    // const onChangePage = (page: number) => {
-    //     dispatch(setPage(page))
-    // };
+    const onChangePage = (page: number) => {
+        dispatch(setPage(page))
+    };
 
     const [isActive, setActive] = useState<any>({
-        1: true,
-        2: false
+
     });
 
-    const handleToggle = (id: number) => {
-        console.log(id);
-        console.log(isActive);
-        isActive[id] = !isActive[id];
-        setActive(isActive);
+    useEffect(() => {
+        dispatch(fetchNews())
+        dispatch(setPage(1))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleToggle = (id: string) => {
+        setActive({
+            ...isActive,
+            [id] : !isActive[id]
+        });
     };
 
     return (
@@ -131,22 +77,22 @@ export const News: FC<News> = () => {
                             <h1 className={styles.news__title}>НОВОСТИ</h1>
                             <div className={styles.news__blocks}>
                                 <ul className={styles.news__table}>
-                                    {
-                                        newsList.map((newsItem: News) => {
+                                    { loading ? "Loading..." : (
+                                        newsList.map((newsItem) => {
                                                 return (
                                                     <li key={newsItem.id} className={styles.news__table__item}>
                                                         <Rating
                                                             name="simple-controlled"
                                                             value={newsItem.rating}
                                                             onChange={(event, newValue) => {
-                                                                setValue(newValue);
+                                                                console.log(newValue, "todo rating, when API is ready");
                                                             }}
                                                         />
                                                         <h3 className={styles.news__table__item__title}>{newsItem.title}</h3>
                                                         <Image className={styles.news__table__img} src={newsItem.image}
                                                                alt="" width={480}
                                                                height={230}/>
-                                                        <div className={isActive[newsItem.id] ? styles.news__table__text : ""}>
+                                                        <div className={!isActive[newsItem.id] ? styles.news__table__text : ""}>
                                                             {newsItem.content}
                                                         </div>
                                                         <div onClick={() => handleToggle(newsItem.id)}
@@ -155,12 +101,12 @@ export const News: FC<News> = () => {
                                                     </li>
                                                 )
                                             }
-                                        )}
+                                        ))}
                                 </ul>
                             </div>
                         </div>
-                        {/*{pagesCount > 1 ?*/}
-                        {/*    <Pagination currentPage={currentPage} onChangePage={onChangePage} pagesCount={pagesCount}/> : ""}*/}
+                        {pagesCount > 1 ?
+                            <Pagination currentPage={currentPage} onChangePage={onChangePage} pagesCount={pagesCount}/> : ""}
                         <Link className={styles.footer__link} href={"/"}>
                             <Image className={styles.footer__bottom__logo} src={"/footerLogo.svg"} alt=""
                                    width={50}

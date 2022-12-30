@@ -132,15 +132,6 @@ function initMap(element: HTMLElement): void {
     });
 }
 
-export const mapPromise = new Promise<void>(resolve => {
-    if (typeof window !== "undefined") {
-        // @ts-ignore
-        window.runMap = () => {
-            resolve()
-        }
-    }
-})
-
 // export const mapActivator: {
 //     loaded: boolean,
 //     subscribers: Array<() => void>,
