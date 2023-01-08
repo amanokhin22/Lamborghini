@@ -9,6 +9,7 @@ import Select, {SelectChangeEvent} from '@mui/material/Select';
 import {Box} from "@mui/material";
 import {Models} from "./Models";
 
+
 const style = {
     borderRadius: 3,
     minWidth: 150,
@@ -29,13 +30,17 @@ export const Buy = () => {
         setShowModels(true);
     };
 
+    const handleClose = () => {
+        setShowModels(false);
+    };
+
     return (
         <>
             <header className={styles.header__buy}>
                 <div className={styles.navbar__buy}>
                     <ul className={styles.menu__left}>
                         <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/races/Race`}>О гонке</Link>
+                            <Link className={styles.menu__link} href={`/races`}>О гонке</Link>
                         </li>
                         <li className={styles.menu__item}>
                             <Link className={styles.menu__link} href={`/`}>Трек</Link>
@@ -44,14 +49,16 @@ export const Buy = () => {
                             <Link className={styles.menu__link} href="/#super">Lamborghini Super trofeo</Link>
                         </li>
                         <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/news/News`}>Новости</Link>
+                            <Link className={styles.menu__link} href={`/news`}>Новости</Link>
                         </li>
                     </ul>
-                    <Image src="/logo.svg" className={styles.navbar__image} alt="logo" width={83}
-                           height={95.7}/>
+                    <Link href={`/`}>
+                        <Image src="/logo.svg" className={styles.navbar__image} alt="logo" width={83}
+                               height={95.7}/>
+                    </Link>
                     <ul className={styles.menu__right}>
                         <li className={styles.menu__item}>
-                            <Link className={styles.menu__link} href={`/buy/Buy`}> Купить</Link>
+                            <Link className={styles.menu__link} href={`/buy`}> Купить</Link>
                         </li>
                         <li className={styles.menu__item}>
                             <Link className={styles.menu__link} href="/#video"> Смотреть онлайн</Link>
@@ -69,23 +76,23 @@ export const Buy = () => {
                         <Box style={style}>
                             <FormControl fullWidth>
                                 <div>
-                                    <InputLabel style={styleModel}  id="demo-simple-select-label">LAMBORGHINI
+                                    <InputLabel style={styleModel} id="demo-simple-select-label">LAMBORGHINI
                                         MODELS</InputLabel>
                                 </div>
                                 <Select style={styleModel}
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={models}
-                                    label="ModelsList"
-                                    onChange={handleChange}
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={models}
+                                        label="ModelsList"
+                                        onChange={handleChange}
                                 >
-                                    <MenuItem value={"AVENTADOR"}>AVENTADOR</MenuItem>
-                                    <MenuItem value={"HURACAN"}>HURACAN</MenuItem>
-                                    <MenuItem value={"URUS"}>URUS</MenuItem>
+                                    <MenuItem value={1}>AVENTADOR</MenuItem>
+                                    <MenuItem value={2}>HURACAN</MenuItem>
+                                    <MenuItem value={3}>URUS</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
-                        {showModels && <Models/>}
+                        {showModels && <Models onClose={handleClose} modelsId={models}/>}
                     </div>
                 </section>
             </main>

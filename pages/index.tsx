@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Lending from "../components/Lending";
+import Landing from "../components/Landing";
 import React from "react";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
                 <title> LAMBORGHINI RACING </title>
             </Head>
             <div>
-                <Lending/>
+                <Landing/>
             </div>
         </div>
     )

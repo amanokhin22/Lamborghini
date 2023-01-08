@@ -29,7 +29,7 @@ const SwipeNavigate: React.FC<{ isNext: boolean }> = ({isNext}) => {
     )
 }
 
-const Lending = () => {
+const Landing = () => {
     SwiperCore.use([Autoplay]);
     const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -49,7 +49,7 @@ const Lending = () => {
                     <div className={styles.navbar}>
                         <ul className={styles.menu__left}>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/races/Race`}>О гонке</Link>
+                                <Link className={styles.menu__link} href={`/races`}>О гонке</Link>
                             </li>
                             <li className={styles.menu__item}>
                                 <Link className={styles.menu__link} href={`/`}>Трек</Link>
@@ -58,14 +58,14 @@ const Lending = () => {
                                 <Link className={styles.menu__link} href="/#super">Lamborghini Super trofeo</Link>
                             </li>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/news/News`}>Новости</Link>
+                                <Link className={styles.menu__link} href={`/news`}>Новости</Link>
                             </li>
                         </ul>
                         <Image src="/logo.svg" className={styles.navbar__image} alt="logo" width={83}
                                height={95.7}/>
                         <ul className={styles.menu__right}>
                             <li className={styles.menu__item}>
-                                <Link className={styles.menu__link} href={`/buy/Buy`}> Купить</Link>
+                                <Link className={styles.menu__link} href={`/buy`}> Купить</Link>
                             </li>
                             <li className={styles.menu__item}>
                                 <Link className={styles.menu__link} href="/#video"> Смотреть онлайн</Link>
@@ -552,4 +552,4 @@ const Lending = () => {
     )
 }
 
-export default Lending;
+export default Landing;
