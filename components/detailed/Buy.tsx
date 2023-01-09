@@ -1,13 +1,17 @@
 import styles from "../../styles/buy.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import {Box} from "@mui/material";
 import {Models} from "./Models";
+import {useAppDispatch, useAppSelector} from "../../app/Hooks";
+import {selectActiveModelsId, selectModelsList} from "../../selectors/selectors";
+import {fetchModels} from "../../redux/asyncThunk";
+import {setActiveModelsId} from "../../redux/lamboSlice";
 
 
 const style = {
@@ -22,11 +26,18 @@ const styleModel = {
 }
 
 export const Buy = () => {
-    const [models, setModels] = useState('');
+    const models = useAppSelector(selectActiveModelsId);
+    const modelsList = useAppSelector(selectModelsList);
+    const dispatch = useAppDispatch();
     const [showModels, setShowModels] = useState(false);
 
+    useEffect(() => {
+        dispatch(fetchModels())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleChange = (event: SelectChangeEvent) => {
-        setModels(event.target.value as string);
+        dispatch(setActiveModelsId(event.target.value));
         setShowModels(true);
     };
 
@@ -86,9 +97,9 @@ export const Buy = () => {
                                         label="ModelsList"
                                         onChange={handleChange}
                                 >
-                                    <MenuItem value={1}>AVENTADOR</MenuItem>
-                                    <MenuItem value={2}>HURACAN</MenuItem>
-                                    <MenuItem value={3}>URUS</MenuItem>
+                                    {modelsList.map((item) => (
+                                        <MenuItem key={item.id} value={item.id}>{item.selectTitle}</MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                         </Box>

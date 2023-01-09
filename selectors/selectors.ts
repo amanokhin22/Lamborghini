@@ -37,16 +37,3 @@ export const selectActiveModels = createSelector(selectNewsList, selectActiveNew
 
 
 
-export const selectModal = (state: RootState) => state.modal;
-
-export const selectIsModalOpen = createSelector(selectModal, (modal) => modal.isOpened);
-
-export const selectModalModelsId = createSelector(selectModal, (modal) => modal.lamboId);
-
-
-export const selectModalModel = createSelector(
-    selectModelsList,
-    selectModalModelsId,
-    (modelsList, modelsId) => modelsList.find(models => models.id === modelsId)
-)
-

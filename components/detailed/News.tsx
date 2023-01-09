@@ -7,7 +7,7 @@ import {Pagination} from "../Pagination";
 import {useAppDispatch, useAppSelector} from "../../app/Hooks";
 import {selectCurrentPage, selectLoading, selectPageCount, selectPageNews} from "../../selectors/selectors";
 import {setPage} from "../../redux/newsSlice";
-import {fetchNews} from "../../redux/asyncThunkNews";
+import {fetchNews} from "../../redux/asyncThunk";
 
 export const News = () => {
     const currentPage = useAppSelector(selectCurrentPage);

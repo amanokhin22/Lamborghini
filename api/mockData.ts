@@ -220,19 +220,22 @@ export const newsList =
 
 export const modelsList = [
     {
-        id: 1,
+        id: "1",
+        selectTitle: "AVENTADOR",
         title: "LAMBORGHINI AVENTADOR",
         image: "/blog3.jpg",
         content: "Lamborghini Selezione Certified"
     },
     {
-        id: 2,
+        id: "2",
+        selectTitle: "HURACAN",
         title: "LAMBORGHINI HURACAN",
         image: "/blog4.jpg",
         content: "Lamborghini Selezione Certified"
     },
     {
-        id: 3,
+        id: "3",
+        selectTitle: "URUS",
         title: "LAMBORGHINI URUS",
         image: "/blog4.jpg",
         content: "Lamborghini Selezione Certified"

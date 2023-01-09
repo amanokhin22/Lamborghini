@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 import {useAppDispatch} from "../../app/Hooks";
 import {useEffect} from "react";
 import {setActiveNewsId} from "../../redux/newsSlice";
-import {fetchNews} from "../../redux/asyncThunkNews";
+import {fetchNews} from "../../redux/asyncThunk";
 
 export const NewsPage = () => {
     const router = useRouter()

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {LamboSliceState} from "../types/types";
-import {fetchModels} from "./asyncThunkNews";
+import {fetchModels} from "./asyncThunk";
 
 
 const initialState: LamboSliceState = {

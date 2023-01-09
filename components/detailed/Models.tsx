@@ -8,7 +8,6 @@ export interface ModelsTypes {
 
 export const Models: FC<ModelsTypes> = ({onClose, modelsId}) => {
 
-
     return (
         <div className={styles.modal}>
             <div

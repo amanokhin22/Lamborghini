@@ -21,7 +21,8 @@ export interface NewsSliceState {
 }
 
 export interface ModelsList {
-    id: number;
+    id: string;
+    selectTitle: string;
     image: string;
     title: string;
     content: string;
